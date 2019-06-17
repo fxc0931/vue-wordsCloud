@@ -46,10 +46,12 @@ export default {
           var dataArrOne = dataArr[i]
           for (let j = 0; j < dataArrOne.length; j++) {
             var stringArr = dataArrOne[j].split('*')
-            var reg = new RegExp('"', 'g')
-            stringArr[1] = stringArr[1].replace(reg, '')
+            // var reg = new RegExp('"', 'g')
+            // stringArr[1] = stringArr[1].replace(reg, '')
+
+            let newStr = stringArr[1].substring(1, stringArr[1].length - 1)
             var item = {
-              name: stringArr[1],
+              name: newStr,
               value: stringArr[0] * 1000,
               textStyle: this.createRandomItemStyle()
             }
