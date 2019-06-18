@@ -638,20 +638,22 @@ export default {
     adviceData: {
       get: function () {
         // var dataArr = this.advice
-        var dataArr = this.dataSource
-        var dataSource = []
-        var dataSourceArr = []
+        let dataArr = this.dataSource
+        let dataSource = []
+        let dataSourceArr = []
         for (let i = 0; i < dataArr.length; i++) {
-          var dataArrOne = dataArr[i]
+          let dataArrOne = dataArr[i]
           for (let j = 0; j < dataArrOne.length; j++) {
-            var stringArr = dataArrOne[j].split('*')
-            let newStr = stringArr[1].substring(1, stringArr[1].length - 1)
-            var item = {
-              name: newStr,
-              value: stringArr[0] * 1000,
-              textStyle: this.createRandomItemStyle()
+            let stringArr = dataArrOne[j].split('*')
+            let newStr = stringArr[1].toString().replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|（ |， |： |]/g, '')
+            if (newStr) {
+              let item = {
+                name: newStr,
+                value: stringArr[0] * 1000,
+                textStyle: this.createRandomItemStyle()
+              }
+              dataSourceArr.push(item)
             }
-            dataSourceArr.push(item)
           }
           dataSource.push(dataSourceArr)
           dataSourceArr = []
